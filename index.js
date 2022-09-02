@@ -23,10 +23,7 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('a user nicknamed ' + localStorage.key(1) + 'has connected');
-    socket.on('connection', (connection) => {
-        io.emit('connection', connection)
-    });
+    console.log('user connected');
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });
