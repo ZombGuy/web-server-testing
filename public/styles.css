@@ -17,6 +17,7 @@ body { margin: 0;
 #nickname {
     background: #333;
     border: none;
+    left: 0;
     padding: 0 1rem;
     margin: 0.25rem;
     border-radius: 3px;
@@ -24,15 +25,15 @@ body { margin: 0;
     color: #fff;
     text-align: center;
     box-sizing: border-box;
-    width: 100%;
-    border: solid #5B6DCD 3px;
-    padding: 5px;
+    width: 10rem;
+    border: solid #5B6DCD 2px;
 }
 .top-bar {
     position: absolute;
     left: 0px;
-    width: 200px;
+    width: 100%;
     /* border: 3px solid #73AD21; */
+    border-bottom: 2px solid black;
     padding: 10px;
 }
 #input { border: none;
@@ -54,7 +55,7 @@ body { margin: 0;
 
 #messages { list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 3.5rem 0 0 0;
 }
 #messages > li { padding: 0.5rem 1rem;
 }
