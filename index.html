@@ -29,14 +29,15 @@
     <script src="/public/main.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        //nickname == DNE
-        sessionStorage.setItem( 'session-nick', null);
+       
       var socket = io();
     
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
-    
+      
+      document.addEventListener('DOMContentLoaded', nameCheck);
+
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {
@@ -44,15 +45,11 @@
           input.value = '';
         }
       });
-    
+
       socket.on('chat message', function(msg) {
         var item = document.createElement('li');
-        if(sessionStorage.getItem('session-nick') == null){
-            item.textContent = msg;
-        }else{
-            let nickname = sessionStorage.getItem('session-nick');
-            item.textContent = nickname + ": " + msg;
-        }
+        let nickname = localStorage.getItem('session-nick');
+        item.textContent = nickname + ": " + msg;
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       });

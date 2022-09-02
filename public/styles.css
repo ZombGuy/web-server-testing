@@ -25,7 +25,7 @@ body { margin: 0;
     color: #fff;
     text-align: center;
     box-sizing: border-box;
-    width: 10rem;
+    width: fit-content;
     border: solid #5B6DCD 2px;
 }
 .top-bar {
