@@ -52,25 +52,48 @@
         window.scrollTo(0, document.body.scrollHeight);
       });
 
-      socket.on('connection', function(connection) {
-        if(nameCheck()){
+      socket.on('user connected', function(username) {
             var item = document.createElement('li');
-            let nickname = localStorage.getItem('session-nick');
+            let nickname = username;
             item.textContent = nickname + " has connected!";
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
-        }
       });
-
+      if(nameCheck()){
+        let nick = localStorage.getItem('session-nick');
+        socket.emit('user connected', nick);
+      }
+      
+      
       document.addEventListener('DOMContentLoaded', function(pageload) {
-        if(nameCheck()){
-            var item = document.createElement('li');
-            let nickname = localStorage.getItem('session-nick');
-            item.textContent = nickname + " has connected!";
-            messages.appendChild(item);
-            window.scrollTo(0, document.body.scrollHeight);
-        }
+      //   socket.on('user connected', function(username) {
+      //     var item = document.createElement('li');
+      //     let nickname = localStorage.getItem('session-nick');
+      //     item.textContent = nickname + " has connected!";
+      //     messages.appendChild(item);
+      //     window.scrollTo(0, document.body.scrollHeight);
+      // });
+        
+        // socket.on('disconnect', () => {
+        //   console.log('user: '+ username +' has disconnected page load');
+        //   io.emit('user disconnected', username);
+
+        //   var item = document.createElement('li');
+        //   let nickname = localStorage.getItem('session-nick');
+        //   item.textContent = nickname + " has disconnected!";
+        //   io.emit('user disconnected', username);
+        //   messages.appendChild(item);
+        //   window.scrollTo(0, document.body.scrollHeight);
+        // });
     });
+
+    // socket.on('user connected', (username) => {
+    //         var item = document.createElement('li');
+    //         let nickname = username;
+    //         item.textContent = nickname + " has connected!";
+    //         messages.appendChild(item);
+    //         window.scrollTo(0, document.body.scrollHeight);
+    //   });
     </script>
   </body>
 </html>

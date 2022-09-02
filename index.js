@@ -22,17 +22,28 @@ app.get('/', (req, res) => {
   app.use('/public', express.static('public'))
 });
 
-io.on('connection', (socket) => {
-    console.log('user connected');
-    socket.on('disconnect', () => {
-      console.log('user disconnected');
-    });
-  });
+// io.on('connection', (socket) => {
+//     console.log('user connected');
+//     socket.on('disconnect', () => {
+//       console.log('user disconnected');
+//     });
+//   });
 
   io.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
         console.log('message: ' + msg)
         io.emit('chat message', msg);
+    });
+  });
+  
+  io.on('connection', (socket) => {
+    socket.on('user connected', (username) => {
+        console.log('user: ' + username + ' has connected.')
+        io.emit('user connected', username);
+        socket.on('disconnect', () => {
+          console.log('user: '+ username +' has disconnected');
+          io.emit('user disconnected', username);
+        });
     });
   });
 
