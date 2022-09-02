@@ -9,8 +9,10 @@ const para = document.getElementById("nickname");
             if(name != (null || "null")){
                 console.log("Loading nickname!");
                 para.textContent = "nickname: " + name;
+                return true;
             }else{
                 updateName();
+                return true;
             }
         }
 

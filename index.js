@@ -8,6 +8,8 @@
 //   get('/', ctx => 'Hello world!')
 // ]);
 
+
+const nicks = require('./public/functions.js');
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -21,7 +23,10 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('a user nicknamed ' + localStorage.key(1) + 'has connected');
+    socket.on('connection', (connection) => {
+        io.emit('connection', connection)
+    });
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });

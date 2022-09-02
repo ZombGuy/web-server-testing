@@ -29,14 +29,14 @@
     <script src="/public/main.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-       
+       const express = require('express');
+       const app = express();
+
       var socket = io();
     
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
-      
-      document.addEventListener('DOMContentLoaded', nameCheck);
 
       form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -53,6 +53,26 @@
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       });
+
+      socket.on('connection', function(connection) {
+        if(nameCheck()){
+            var item = document.createElement('li');
+            let nickname = localStorage.getItem('session-nick');
+            item.textContent = nickname + " has connected!";
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', function(pageload) {
+        if(nameCheck()){
+            var item = document.createElement('li');
+            let nickname = localStorage.getItem('session-nick');
+            item.textContent = nickname + " has connected!";
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+    });
     </script>
   </body>
 </html>
