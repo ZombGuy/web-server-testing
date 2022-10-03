@@ -59,6 +59,15 @@
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
       });
+
+      socket.on('user disconnected', function(username) {
+            var item = document.createElement('li');
+            let nickname = username;
+            item.textContent = nickname + " has disconnected!";
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+      });
+
       if(nameCheck()){
         let nick = localStorage.getItem('session-nick');
         socket.emit('user connected', nick);
